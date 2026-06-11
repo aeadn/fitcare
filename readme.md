@@ -1,1 +1,1 @@
-Bienvenue dans le projet fitcare
+Bienvenue dans le projet fitcare barber
