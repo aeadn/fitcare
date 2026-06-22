@@ -1,0 +1,139 @@
+.section {
+  padding: var(--s9) 0;
+  background: var(--noir-absolu);
+  position: relative;
+}
+
+.section::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--or), transparent);
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: var(--s3);
+  flex-wrap: wrap;
+  margin-bottom: var(--s5);
+}
+
+.filterBtn {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: var(--noir-mat);
+  color: var(--gris-moyen);
+  border: 1px solid var(--gris-border);
+  padding: 8px var(--s5);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filterBtnActive {
+  background: var(--or);
+  color: var(--noir-absolu);
+  border-color: var(--or);
+}
+
+.filterBtn:not(.filterBtnActive):hover {
+  border-color: var(--gris-clair);
+  color: var(--blanc-casse);
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--s4);
+}
+
+/* Card */
+.card {
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: var(--or);
+}
+
+.cardImg {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: var(--gris-fonce);
+  overflow: hidden;
+}
+
+.cardBody {
+  padding: var(--s4) var(--s5) var(--s5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--s2);
+}
+
+.cardName {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--or);
+}
+
+.cardPrice {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--or);
+  white-space: nowrap;
+}
+
+.cardDesc {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--gris-clair);
+  line-height: 1.7;
+  margin-bottom: var(--s4);
+}
+
+.btnReserver {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: var(--or);
+  color: var(--noir-absolu);
+  padding: 8px 20px;
+  text-decoration: none;
+  transition: background 0.2s;
+  align-self: flex-start;
+}
+
+.btnReserver:hover {
+  background: var(--or-light);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

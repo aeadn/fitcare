@@ -1,0 +1,148 @@
+.section {
+  padding: var(--s9) 0;
+  background: var(--noir-profond);
+  position: relative;
+}
+
+.section::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--or), transparent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s4);
+}
+
+/* Card */
+.card {
+  display: flex;
+  align-items: stretch;
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: var(--or);
+}
+
+.upcoming {
+  opacity: 0.5;
+}
+
+/* Card image */
+.cardImg {
+  width: 140px;
+  min-height: 140px;
+  position: relative;
+  background: var(--gris-fonce);
+  flex-shrink: 0;
+}
+
+.cardImgPlaceholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.cardImgPlaceholder span {
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--or);
+}
+
+/* Card body */
+.cardBody {
+  padding: var(--s4) var(--s5);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+
+.cardName {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blanc-casse);
+}
+
+.cardAddress {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--gris-clair);
+  line-height: 1.6;
+}
+
+.cardTel {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--gris-clair);
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+  padding-top: var(--s2);
+}
+
+.btnReserver {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: var(--or);
+  color: var(--noir-absolu);
+  padding: 8px 20px;
+  text-decoration: none;
+  transition: background 0.2s;
+  display: inline-block;
+}
+
+.btnReserver:hover {
+  background: var(--or-light);
+}
+
+.btnBientot {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--gris-moyen);
+  border: 1px solid var(--gris-fonce);
+  padding: 7px 20px;
+  cursor: default;
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cardImg {
+    width: 110px;
+    min-height: 110px;
+  }
+}

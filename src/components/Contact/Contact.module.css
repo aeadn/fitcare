@@ -1,0 +1,242 @@
+.section {
+  padding: var(--s9) 0;
+  background: var(--noir-absolu);
+  position: relative;
+}
+
+.section::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--or), transparent);
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: var(--s3);
+  margin-bottom: var(--s5);
+}
+
+.tab {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: var(--noir-mat);
+  color: var(--gris-moyen);
+  border: 1px solid var(--gris-border);
+  padding: 10px var(--s5);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tabActive {
+  background: var(--or);
+  color: var(--noir-absolu);
+  border-color: var(--or);
+}
+
+/* Grid */
+.formsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s6);
+  align-items: start;
+}
+
+/* Form */
+.form {
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  padding: var(--s7) var(--s6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+}
+
+.formTitle {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--blanc-casse);
+  text-align: center;
+  margin-bottom: var(--s2);
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+
+.label {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gris-moyen);
+}
+
+.input,
+.select,
+.textarea {
+  background: var(--noir-soft);
+  border: 1px solid var(--gris-border);
+  color: var(--blanc-casse);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  padding: 12px var(--s4);
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  border-radius: 0;
+  appearance: none;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--gris-moyen);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: var(--or);
+}
+
+.select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A0A0A0' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+  background-color: var(--noir-soft);
+}
+
+.select option {
+  background: var(--noir-soft);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.fileWrap {
+  display: flex;
+  border: 1px solid var(--gris-border);
+}
+
+.filePlaceholder {
+  flex: 1;
+  background: var(--noir-soft);
+  color: var(--gris-moyen);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 300;
+  padding: 11px var(--s4);
+}
+
+.fileBtn {
+  background: var(--or);
+  color: var(--noir-absolu);
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 12px var(--s4);
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+
+.submit {
+  background: transparent;
+  border: 1px solid var(--blanc-casse);
+  color: var(--blanc-casse);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 14px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.25s;
+  margin-top: var(--s2);
+}
+
+.submit:hover {
+  background: var(--blanc-casse);
+  color: var(--noir-absolu);
+}
+
+/* Info bloc */
+.infoBloc {
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  padding: var(--s6) var(--s5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+}
+
+.infoTitle {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--blanc-casse);
+  margin-bottom: var(--s2);
+}
+
+.infoSalon {
+  padding: var(--s3) 0;
+  border-bottom: 1px solid var(--gris-border);
+}
+
+.infoSalon:last-child {
+  border-bottom: none;
+}
+
+.infoSalonNom {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: 2px;
+}
+
+.infoSalonAddr {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--gris-clair);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .formsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .fieldRow {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,2327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIT'CARE — Design System · Barbershop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS — FIT'CARE
+   ============================================================ */
+:root {
+  /* --- Noir & fonds --- */
+  --noir-absolu:   #000000;
+  --noir-profond:  #0A0A0A;
+  --noir-mat:      #111111;
+  --noir-soft:     #1A1A1A;
+  --noir-card:     #141414;
+
+  /* --- Dorés --- */
+  --or:            #C09A50;   /* or principal FIT'CARE */
+  --or-light:      #D4B575;
+  --or-pale:       #E8D4A8;
+  --or-dark:       #8A6E2A;
+  --or-muted:      rgba(192,154,80,0.25);
+
+  /* --- Beige / sable --- */
+  --beige:         #C8A96E;   /* teinte beige maquette */
+  --beige-light:   #DFC49A;
+
+  /* --- Blancs & gris --- */
+  --blanc:         #FFFFFF;
+  --blanc-casse:   #F0F0F0;
+  --gris-clair:    #A0A0A0;
+  --gris-moyen:    #666666;
+  --gris-fonce:    #333333;
+  --gris-border:   #2A2A2A;
+
+  /* --- Typos --- */
+  --serif:  'Inria Serif', Georgia, serif;   /* titres */
+  --sans:   'Inter', system-ui, sans-serif;  /* textes */
+
+  /* --- Espacement --- */
+  --s1: 4px;  --s2: 8px;   --s3: 12px;  --s4: 16px;
+  --s5: 24px; --s6: 32px;  --s7: 48px;  --s8: 64px; --s9: 96px;
+
+  /* --- Bordures --- */
+  --radius-0:  0px;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+
+  /* --- Bordure dorée caractéristique --- */
+  --border-or: 1px solid var(--or);
+  --border-or-subtle: 1px solid rgba(192,154,80,0.35);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--noir-absolu);
+  color: var(--blanc-casse);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   MASTHEAD
+   ============================================================ */
+.masthead {
+  background: var(--noir-absolu);
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--s9) var(--s5) var(--s8);
+  position: relative;
+  overflow: hidden;
+  border-bottom: var(--border-or-subtle);
+}
+
+/* Ligne dégradée dorée — signature décorative */
+.masthead::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--or), transparent);
+}
+
+.masthead-hex {
+  width: 72px;
+  height: 72px;
+  margin-bottom: var(--s5);
+  opacity: 0.9;
+}
+
+.masthead-brand {
+  font-family: var(--serif);
+  font-size: clamp(52px, 10vw, 100px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 0.9;
+  color: var(--blanc);
+  margin-bottom: var(--s3);
+}
+
+.masthead-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  margin: var(--s4) 0;
+}
+.masthead-divider-line { flex: 1; max-width: 80px; height: 1px; background: linear-gradient(to right, transparent, var(--or)); }
+.masthead-divider-line.rev { background: linear-gradient(to left, transparent, var(--or)); }
+.masthead-divider-scissors {
+  color: var(--or);
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.masthead-sub {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gris-clair);
+  margin-bottom: var(--s3);
+}
+
+.masthead-tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--or);
+  letter-spacing: 0.08em;
+}
+
+.ds-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  border: var(--border-or-subtle);
+  color: var(--gris-clair);
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 6px var(--s4);
+  margin-top: var(--s5);
+}
+
+/* ============================================================
+   PAGE LAYOUT
+   ============================================================ */
+.page { max-width: 1120px; margin: 0 auto; padding: 0 var(--s5) var(--s9); }
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+.section { margin-top: var(--s8); }
+
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: var(--s3);
+}
+.section-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--or); }
+.section-eyebrow::after  { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--gris-border), transparent); }
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  color: var(--blanc-casse);
+  margin-bottom: var(--s3);
+}
+
+.section-desc {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--gris-clair);
+  max-width: 560px;
+  line-height: 1.8;
+  margin-bottom: var(--s5);
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   TABLE DES MATIÈRES
+   ============================================================ */
+.toc {
+  border: var(--border-or-subtle);
+  border-left: 2px solid var(--or);
+  padding: var(--s5) var(--s6);
+  margin-top: var(--s7);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--s2) var(--s6);
+  background: var(--noir-mat);
+}
+.toc-item {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--gris-moyen);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: 6px 0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.toc-item:hover { color: var(--or); }
+.toc-num {
+  font-family: var(--serif);
+  font-size: 15px;
+  color: var(--or);
+  min-width: 24px;
+}
+
+/* ============================================================
+   DIVIDERS DORÉS
+   ============================================================ */
+.divider-gold {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  margin: var(--s7) 0;
+}
+.divider-gold-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--or), transparent);
+}
+.divider-gold-mark {
+  width: 6px; height: 6px;
+  background: var(--or);
+  transform: rotate(45deg);
+}
+
+.divider-line-full {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--or) 30%, var(--or) 70%, transparent);
+  margin: var(--s6) 0;
+}
+
+/* ============================================================
+   01. PALETTE
+   ============================================================ */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--s3);
+}
+.swatch-group { display: flex; flex-direction: column; gap: var(--s2); }
+.swatch-label {
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gris-moyen);
+  margin-bottom: var(--s1);
+}
+.swatch {
+  border-radius: var(--radius-sm);
+  height: 56px;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--s1) var(--s2);
+}
+.swatch code {
+  font-size: 8px;
+  font-family: monospace;
+  opacity: 0.55;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   02. TYPOGRAPHIE
+   ============================================================ */
+.typo-specimen { display: flex; flex-direction: column; gap: var(--s6); }
+.typo-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: var(--s6);
+  align-items: start;
+  padding-bottom: var(--s5);
+  border-bottom: 1px solid var(--gris-border);
+}
+.typo-meta-name {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: var(--s2);
+}
+.typo-meta-detail {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--gris-moyen);
+  line-height: 1.8;
+}
+@media (max-width: 600px) {
+  .typo-row { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   03. ORNEMENTS & SÉPARATEURS
+   ============================================================ */
+.orn-grid { display: flex; gap: var(--s6); align-items: center; flex-wrap: wrap; }
+.orn-item { display: flex; flex-direction: column; align-items: center; gap: var(--s3); }
+.orn-label {
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gris-moyen);
+  text-align: center;
+}
+
+/* ============================================================
+   04. BOUTONS
+   ============================================================ */
+.btn {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s3);
+  text-decoration: none;
+  border: none;
+  outline: none;
+  border-radius: var(--radius-0);
+}
+
+/* Primaire : fond blanc, texte noir */
+.btn-primary {
+  background: var(--blanc-casse);
+  color: var(--noir-absolu);
+  padding: 13px var(--s7);
+  border: 1px solid var(--blanc-casse);
+}
+.btn-primary:hover { background: var(--or); color: var(--noir-absolu); border-color: var(--or); }
+
+/* Doré contour */
+.btn-or {
+  background: transparent;
+  color: var(--or);
+  border: 1px solid var(--or);
+  padding: 12px var(--s6);
+}
+.btn-or:hover { background: var(--or); color: var(--noir-absolu); }
+
+/* Ghost gris */
+.btn-ghost {
+  background: transparent;
+  color: var(--gris-clair);
+  border: 1px solid var(--gris-fonce);
+  padding: 12px var(--s6);
+}
+.btn-ghost:hover { border-color: var(--gris-clair); color: var(--blanc-casse); }
+
+/* Réserver — fond doré plein */
+.btn-reserver {
+  background: var(--or);
+  color: var(--noir-absolu);
+  padding: 10px var(--s6);
+  font-weight: 600;
+}
+.btn-reserver:hover { background: var(--or-light); }
+
+/* Filtre actif/inactif */
+.btn-filter {
+  background: var(--noir-mat);
+  color: var(--gris-moyen);
+  border: 1px solid var(--gris-border);
+  padding: 8px var(--s5);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+}
+.btn-filter.active { background: var(--or); color: var(--noir-absolu); border-color: var(--or); }
+
+.btn-arrow::after { content: '→'; font-size: 14px; }
+.btn-circle-arrow {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: transparent;
+  color: var(--blanc);
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-circle-arrow:hover { border-color: var(--blanc); background: rgba(255,255,255,0.1); }
+
+.comp-group { display: flex; flex-wrap: wrap; gap: var(--s4); align-items: center; }
+
+/* ============================================================
+   05. BADGES / TAGS
+   ============================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+}
+.badge-or      { background: rgba(192,154,80,0.12); color: var(--or); border: 1px solid rgba(192,154,80,0.35); }
+.badge-blanc   { background: rgba(240,240,240,0.08); color: var(--blanc-casse); border: 1px solid var(--gris-border); }
+.badge-solid   { background: var(--blanc-casse); color: var(--noir-absolu); }
+.badge-muted   { background: var(--gris-fonce); color: var(--gris-clair); }
+.badge-upcoming{ background: rgba(192,154,80,0.08); color: var(--or-light); border: 1px solid rgba(192,154,80,0.2); font-style: italic; }
+
+/* ============================================================
+   06. NAVIGATION
+   ============================================================ */
+
+/* NAV DESKTOP */
+.nav-demo {
+  background: var(--noir-absolu);
+  padding: 0 var(--s6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  border-bottom: var(--border-or-subtle);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--blanc);
+}
+.nav-logo span { color: var(--or); }
+.nav-logo-sub {
+  font-family: var(--sans);
+  font-size: 7px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-top: 1px;
+}
+.nav-links { display: flex; gap: var(--s7); list-style: none; }
+.nav-links a {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gris-moyen);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--blanc-casse); }
+.nav-actions { display: flex; gap: var(--s3); align-items: center; }
+.nav-btn-outline {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--or);
+  color: var(--or);
+  padding: 9px var(--s5);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.nav-btn-outline:hover { background: var(--or); color: var(--noir-absolu); }
+.nav-btn-solid {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: var(--or);
+  border: 1px solid var(--or);
+  color: var(--noir-absolu);
+  padding: 9px var(--s5);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.nav-btn-solid:hover { background: var(--or-light); }
+
+/* NAV MOBILE */
+.nav-mobile-demo {
+  background: var(--noir-absolu);
+  border: var(--border-or-subtle);
+  max-width: 420px;
+  overflow: hidden;
+}
+.nav-mobile-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s4) var(--s5);
+  border-bottom: var(--border-or-subtle);
+}
+.nav-mobile-logo {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--blanc);
+}
+.nav-mobile-logo-sub {
+  font-family: var(--sans);
+  font-size: 6px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--or);
+}
+.nav-mobile-hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-mobile-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--blanc-casse);
+}
+.nav-mobile-menu {
+  background: var(--noir-mat);
+}
+.nav-mobile-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s4) var(--s5);
+  border-bottom: 1px solid var(--gris-border);
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: var(--blanc-casse);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.nav-mobile-item:hover { background: rgba(192,154,80,0.06); }
+.nav-mobile-item.active { color: var(--or); background: rgba(192,154,80,0.08); }
+.nav-mobile-item.cta { color: var(--or); font-weight: 600; }
+
+/* ============================================================
+   07. HERO / CAROUSEL HERO
+   ============================================================ */
+.hero-demo {
+  min-height: 260px;
+  background: var(--noir-mat);
+  border: var(--border-or-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--s5);
+  padding: var(--s8) var(--s6);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-demo::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--or), transparent);
+}
+.hero-demo-label {
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gris-moyen);
+}
+.hero-cta-group { display: flex; flex-direction: column; align-items: center; gap: var(--s4); }
+.hero-dots { display: flex; gap: var(--s2); margin-top: var(--s3); }
+.hero-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gris-fonce); }
+.hero-dot.active { background: var(--or); }
+
+/* ============================================================
+   08. CARD SALON
+   ============================================================ */
+.salon-card {
+  display: flex;
+  align-items: stretch;
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.salon-card:hover { border-color: var(--or); }
+.salon-card-img {
+  width: 120px;
+  min-height: 120px;
+  background: var(--gris-fonce);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: var(--gris-moyen);
+  text-transform: uppercase;
+  font-family: var(--sans);
+}
+.salon-card-body {
+  padding: var(--s4) var(--s5);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+.salon-card-name {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blanc-casse);
+}
+.salon-card-address {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--gris-clair);
+  line-height: 1.5;
+}
+.salon-card-tel {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--gris-clair);
+}
+.salon-card-tags { display: flex; gap: var(--s1); flex-wrap: wrap; margin-top: var(--s1); }
+.salon-card-tag {
+  width: 14px; height: 14px;
+  background: var(--gris-fonce);
+  border-radius: 2px;
+}
+.salon-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--s2);
+}
+
+/* Upcoming / prochaine ouverture */
+.salon-card.upcoming { opacity: 0.5; }
+.salon-upcoming-label {
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--or);
+  padding: var(--s4) 0 var(--s2);
+}
+
+/* Grille des salons */
+.salons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--s4);
+}
+@media (max-width: 720px) {
+  .salons-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   09. CARD PRESTATION
+   ============================================================ */
+.prestation-card {
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.prestation-card:hover { border-color: var(--or); }
+.prestation-card-img {
+  width: 100%;
+  height: 160px;
+  background: var(--gris-fonce);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gris-moyen);
+}
+.prestation-card-body { padding: var(--s4) var(--s5) var(--s5); }
+.prestation-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--s2);
+}
+.prestation-card-name {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--or);
+}
+.prestation-card-price {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--or);
+  white-space: nowrap;
+}
+.prestation-card-desc {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--gris-clair);
+  line-height: 1.7;
+  margin-bottom: var(--s4);
+}
+
+.prestations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--s4);
+}
+
+/* ============================================================
+   10. CARD FORFAIT / ABONNEMENT
+   ============================================================ */
+.forfait-card {
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  padding: var(--s6) var(--s5);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s3);
+  position: relative;
+  transition: border-color 0.2s;
+}
+.forfait-card:hover { border-color: var(--or); }
+.forfait-card.featured {
+  border: 1px solid var(--or);
+  background: var(--noir-soft);
+}
+.forfait-badge {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--or);
+  color: var(--noir-absolu);
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 3px 16px;
+}
+.forfait-name {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--blanc-casse);
+}
+.forfait-detail {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--gris-clair);
+  line-height: 1.6;
+}
+.forfait-price {
+  font-family: var(--serif);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--blanc);
+  line-height: 1;
+}
+.forfait-price sup { font-size: 22px; vertical-align: super; }
+
+.forfaits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--s4);
+}
+
+/* ============================================================
+   11. CARD VALEUR / ATTRIBUT
+   ============================================================ */
+.valeur-card {
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  padding: var(--s6) var(--s5);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s4);
+}
+.valeur-card-img {
+  width: 80px;
+  height: 80px;
+  background: var(--gris-fonce);
+  margin: 0 auto;
+}
+.valeur-card-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--or);
+  letter-spacing: 0.03em;
+}
+.valeur-card-desc {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--gris-clair);
+  line-height: 1.7;
+  text-align: center;
+}
+
+.valeurs-grid-large {
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  padding: var(--s7) var(--s6);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s4);
+}
+.valeurs-grid-large .valeur-card-title { font-size: 28px; }
+.valeurs-grid-large .valeur-card-desc  { max-width: 380px; font-size: 13px; }
+
+.valeurs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--s4);
+}
+
+/* ============================================================
+   12. CARD CTA (Impose ton style / Rejoins-nous)
+   ============================================================ */
+.cta-card {
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  padding: var(--s7) var(--s5);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s4);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.cta-card:hover { border-color: var(--or); }
+.cta-card-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--noir-mat);
+  background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55));
+  z-index: 0;
+}
+.cta-card > * { position: relative; z-index: 1; }
+.cta-card-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--or);
+}
+.cta-card-action {
+  font-family: var(--serif);
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 700;
+  color: var(--blanc);
+  line-height: 1.1;
+}
+.cta-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--s4);
+}
+
+/* ============================================================
+   13. CARD ARTICLE / BLOG
+   ============================================================ */
+.article-card {
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.article-card:hover { border-color: var(--or); }
+.article-card-img {
+  width: 100%;
+  height: 180px;
+  background: var(--gris-fonce);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gris-moyen);
+  position: relative;
+  overflow: hidden;
+}
+.article-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+}
+.article-card-footer-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: var(--s4) var(--s4) var(--s3);
+}
+.article-card-title-overlay {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blanc);
+}
+.article-card-meta-overlay {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: var(--gris-clair);
+  margin-top: 2px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Variante card article normale (liste) */
+.article-card-body { padding: 0; }
+.article-card-title {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blanc);
+}
+.article-card-meta {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: var(--gris-clair);
+  display: flex;
+  justify-content: space-between;
+  padding: var(--s3) var(--s4);
+  background: rgba(192,154,80,0.04);
+}
+
+/* Variante card compacte (liste mobile) */
+.article-card-sm .article-card-img { height: 120px; }
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--s4);
+}
+.articles-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s4);
+}
+@media (max-width: 720px) {
+  .articles-grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   14. CARD AVIS CLIENT
+   ============================================================ */
+.avis-card {
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  padding: var(--s5) var(--s5) var(--s4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+.avis-pseudo {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--blanc-casse);
+}
+.avis-comment {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--gris-clair);
+  line-height: 1.7;
+  font-style: italic;
+}
+.avis-stars { color: var(--or); font-size: 13px; letter-spacing: 2px; }
+
+.avis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--s4);
+}
+
+/* Carousel nav */
+.carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--s3);
+}
+.carousel-dots { display: flex; gap: var(--s2); }
+.carousel-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gris-fonce); }
+.carousel-dot.active { background: var(--or); }
+
+/* ============================================================
+   15. FORMULAIRES
+   ============================================================ */
+.form-wrap {
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  padding: var(--s7) var(--s6);
+  max-width: 620px;
+}
+.form-title {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--blanc-casse);
+  text-align: center;
+  margin-bottom: var(--s6);
+}
+.field { display: flex; flex-direction: column; gap: var(--s2); margin-bottom: var(--s4); }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s4); }
+@media (max-width: 500px) { .field-row { grid-template-columns: 1fr; } }
+.field-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gris-moyen);
+}
+.field-input, .field-select, .field-textarea {
+  background: var(--noir-soft);
+  border: 1px solid var(--gris-border);
+  color: var(--blanc-casse);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  padding: 12px var(--s4);
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  border-radius: var(--radius-0);
+  appearance: none;
+}
+.field-input::placeholder, .field-textarea::placeholder { color: var(--gris-moyen); }
+.field-input:focus, .field-select:focus, .field-textarea:focus { border-color: var(--or); }
+.field-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A0A0A0' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+.field-textarea { resize: vertical; min-height: 100px; }
+.field-file {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--gris-border);
+}
+.field-file-input {
+  flex: 1;
+  background: var(--noir-soft);
+  color: var(--gris-moyen);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 300;
+  padding: 11px var(--s4);
+  border: none;
+  outline: none;
+}
+.field-file-btn {
+  background: var(--or);
+  color: var(--noir-absolu);
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 12px var(--s4);
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+.form-submit {
+  background: transparent;
+  border: 1px solid var(--blanc-casse);
+  color: var(--blanc-casse);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 14px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.25s;
+  margin-top: var(--s2);
+}
+.form-submit:hover { background: var(--blanc-casse); color: var(--noir-absolu); }
+
+/* ============================================================
+   16. CARTE D'ÉQUIPE / BARBER
+   ============================================================ */
+.barber-card {
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  padding: var(--s5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s3);
+  text-align: center;
+}
+.barber-card-photo {
+  width: 100px;
+  height: 100px;
+  background: var(--gris-fonce);
+  align-self: flex-start;
+  align-self: center;
+}
+.barber-card-role {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--or);
+}
+.barber-card-name {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--blanc-casse);
+  letter-spacing: 0.05em;
+}
+.barber-card-desc {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--gris-clair);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   17. QUIZZ / SÉLECTEUR PROFIL
+   ============================================================ */
+.quizz-wrap {
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  padding: var(--s6) var(--s5);
+  max-width: 520px;
+}
+.quizz-title {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-style: italic;
+  color: var(--or);
+  text-align: center;
+  margin-bottom: var(--s3);
+}
+.quizz-question {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--blanc-casse);
+  text-align: center;
+  margin-bottom: var(--s5);
+  line-height: 1.6;
+}
+.quizz-options { display: flex; flex-direction: column; gap: var(--s3); }
+.quizz-option {
+  background: transparent;
+  border: 1px solid var(--gris-border);
+  color: var(--blanc-casse);
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px var(--s5);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+}
+.quizz-option:hover { border-color: var(--or); color: var(--or); }
+.quizz-option.selected { border-color: var(--or); background: rgba(192,154,80,0.08); color: var(--or); }
+.quizz-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--s5);
+}
+.quizz-step {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--gris-moyen);
+}
+
+/* Sélecteur de profil (boutons type CTA card) */
+.profil-selector { display: flex; flex-direction: column; gap: var(--s3); }
+.profil-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  padding: var(--s4) var(--s5);
+  cursor: pointer;
+  transition: border-color 0.2s;
+  text-align: left;
+}
+.profil-btn:hover { border-color: var(--or); }
+.profil-btn.selected { border-color: var(--or); background: rgba(192,154,80,0.06); }
+.profil-btn-icon {
+  width: 44px; height: 34px;
+  background: var(--gris-fonce);
+  flex-shrink: 0;
+}
+.profil-btn-label {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blanc-casse);
+}
+
+/* ============================================================
+   18. LECTEUR VIDÉO PLACEHOLDER
+   ============================================================ */
+.video-placeholder {
+  width: 100%;
+  background: var(--noir-mat);
+  border: var(--border-or-subtle);
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--s3);
+  color: var(--gris-moyen);
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.video-placeholder-icon {
+  width: 52px; height: 52px;
+  border: 1px solid var(--gris-fonce);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gris-moyen);
+  font-size: 18px;
+}
+
+/* ============================================================
+   19. ESPACEMENT
+   ============================================================ */
+.spacing-demo { display: flex; gap: var(--s5); flex-wrap: wrap; align-items: flex-end; }
+.spacing-item { display: flex; flex-direction: column; align-items: center; gap: var(--s2); }
+.spacing-block { background: var(--or-muted); border: 1px solid var(--or-dark); }
+.spacing-val {
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gris-moyen);
+  text-align: center;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: var(--noir-absolu);
+  border-top: var(--border-or-subtle);
+  padding: var(--s7) var(--s5);
+  text-align: center;
+  margin-top: var(--s9);
+  position: relative;
+}
+.footer::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--or), transparent);
+  position: absolute;
+  top: -1px;
+  left: 0;
+}
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--blanc);
+  margin-bottom: var(--s2);
+}
+.footer-tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--or);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--s5);
+}
+.footer-meta {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gris-moyen);
+  margin-top: var(--s4);
+}
+
+/* ============================================================
+   UTILITAIRES
+   ============================================================ */
+.demo-block {
+  background: var(--noir-mat);
+  border: 1px solid var(--gris-border);
+  padding: var(--s5);
+  margin-bottom: var(--s5);
+}
+.demo-label {
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: var(--s3);
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     MASTHEAD
+     ============================================================ -->
+<header class="masthead">
+  <!-- Hexagone logo SVG -->
+  <svg class="masthead-hex" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="40,4 72,22 72,58 40,76 8,58 8,22" stroke="#C09A50" stroke-width="1.5" fill="none"/>
+    <!-- Ciseaux stylisés -->
+    <line x1="28" y1="28" x2="52" y2="52" stroke="#C09A50" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="52" y1="28" x2="28" y2="52" stroke="#C09A50" stroke-width="1.2" stroke-linecap="round"/>
+    <circle cx="26" cy="26" r="5" stroke="#C09A50" stroke-width="1" fill="none"/>
+    <circle cx="54" cy="26" r="5" stroke="#C09A50" stroke-width="1" fill="none"/>
+  </svg>
+
+  <div class="masthead-brand">FIT'CARE</div>
+
+  <div class="masthead-divider">
+    <div class="masthead-divider-line"></div>
+    <div class="masthead-divider-scissors">✂</div>
+    <div class="masthead-divider-line rev"></div>
+  </div>
+
+  <p class="masthead-sub">Barbershop · Design System</p>
+  <p class="masthead-tagline">La confiance ✂ L'estime de soi</p>
+
+  <div class="ds-badge">v1.0 · Palette · Typo · Composants</div>
+</header>
+
+<div class="page">
+
+  <!-- TABLE DES MATIÈRES -->
+  <nav class="toc" aria-label="Table des matières">
+    <a href="#palette"     class="toc-item"><span class="toc-num">01</span> Palette</a>
+    <a href="#typo"        class="toc-item"><span class="toc-num">02</span> Typographie</a>
+    <a href="#ornements"   class="toc-item"><span class="toc-num">03</span> Ornements</a>
+    <a href="#boutons"     class="toc-item"><span class="toc-num">04</span> Boutons</a>
+    <a href="#badges"      class="toc-item"><span class="toc-num">05</span> Badges</a>
+    <a href="#nav"         class="toc-item"><span class="toc-num">06</span> Navigation</a>
+    <a href="#hero"        class="toc-item"><span class="toc-num">07</span> Hero</a>
+    <a href="#salons"      class="toc-item"><span class="toc-num">08</span> Cards Salon</a>
+    <a href="#prestations" class="toc-item"><span class="toc-num">09</span> Cards Prestation</a>
+    <a href="#forfaits"    class="toc-item"><span class="toc-num">10</span> Cards Forfait</a>
+    <a href="#valeurs"     class="toc-item"><span class="toc-num">11</span> Cards Valeur</a>
+    <a href="#cta"         class="toc-item"><span class="toc-num">12</span> Cards CTA</a>
+    <a href="#articles"    class="toc-item"><span class="toc-num">13</span> Cards Article</a>
+    <a href="#avis"        class="toc-item"><span class="toc-num">14</span> Avis Clients</a>
+    <a href="#forms"       class="toc-item"><span class="toc-num">15</span> Formulaires</a>
+    <a href="#equipe"      class="toc-item"><span class="toc-num">16</span> Équipe</a>
+    <a href="#quizz"       class="toc-item"><span class="toc-num">17</span> Quizz / Profil</a>
+    <a href="#video"       class="toc-item"><span class="toc-num">18</span> Vidéo</a>
+    <a href="#spacing"     class="toc-item"><span class="toc-num">19</span> Espacement</a>
+  </nav>
+
+  <!-- ===================================================
+       01. PALETTE
+       =================================================== -->
+  <div class="section" id="palette">
+    <div class="section-eyebrow">01 — Palette</div>
+    <h2 class="section-title">Couleurs</h2>
+    <p class="section-desc">Fond noir et touches de doré. Simple, sobre, classe.</p>
+
+    <div class="palette-grid">
+      <!-- Noirs -->
+      <div class="swatch-group">
+        <div class="swatch-label">Noirs</div>
+        <div class="swatch" style="background:#000000;height:48px;"><code style="color:#444">#000000</code></div>
+        <div class="swatch" style="background:#111111;height:40px;"><code style="color:#555">#111111</code></div>
+        <div class="swatch" style="background:#1A1A1A;height:40px;"><code style="color:#555">#1A1A1A</code></div>
+        <div class="swatch" style="background:#2A2A2A;height:36px;"><code style="color:#666">#2A2A2A</code></div>
+      </div>
+
+      <!-- Dorés -->
+      <div class="swatch-group">
+        <div class="swatch-label">Dorés</div>
+        <div class="swatch" style="background:#C09A50;height:56px;"><code style="color:rgba(0,0,0,0.5)">#C09A50</code></div>
+        <div class="swatch" style="background:#D4B575;height:44px;"><code style="color:rgba(0,0,0,0.4)">#D4B575</code></div>
+        <div class="swatch" style="background:#E8D4A8;height:36px;"><code style="color:rgba(0,0,0,0.4)">#E8D4A8</code></div>
+        <div class="swatch" style="background:#8A6E2A;height:36px;"><code style="color:rgba(0,0,0,0.4)">#8A6E2A</code></div>
+      </div>
+
+      <!-- Beige -->
+      <div class="swatch-group">
+        <div class="swatch-label">Beige / Sable</div>
+        <div class="swatch" style="background:#C8A96E;height:48px;"><code style="color:rgba(0,0,0,0.4)">#C8A96E</code></div>
+        <div class="swatch" style="background:#DFC49A;height:40px;"><code style="color:rgba(0,0,0,0.35)">#DFC49A</code></div>
+      </div>
+
+      <!-- Blancs & gris -->
+      <div class="swatch-group">
+        <div class="swatch-label">Blancs & Gris</div>
+        <div class="swatch" style="background:#FFFFFF;height:48px;border:1px solid #222;"><code style="color:#666">#FFFFFF</code></div>
+        <div class="swatch" style="background:#F0F0F0;height:40px;border:1px solid #222;"><code style="color:#666">#F0F0F0</code></div>
+        <div class="swatch" style="background:#A0A0A0;height:36px;"><code style="color:#444">#A0A0A0</code></div>
+        <div class="swatch" style="background:#666666;height:36px;"><code style="color:#aaa">#666666</code></div>
+        <div class="swatch" style="background:#333333;height:32px;"><code style="color:#888">#333333</code></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       02. TYPOGRAPHIE
+       =================================================== -->
+  <div class="section" id="typo">
+    <div class="section-eyebrow">02 — Typographie</div>
+    <h2 class="section-title">Caractères</h2>
+    <p class="section-desc">Inria Serif pour les titres — caractère, élégance. Inter pour les textes — lisibilité, modernité.</p>
+
+    <div class="typo-specimen">
+      <div class="typo-row">
+        <div>
+          <div class="typo-meta-name">Inria Serif</div>
+          <div class="typo-meta-detail">Titres, noms de section<br>weight 700 · italic</div>
+        </div>
+        <div>
+          <div style="font-family:'Inria Serif',serif; font-size:clamp(36px,5vw,64px); font-weight:700; letter-spacing:0.04em; line-height:1; color:var(--blanc-casse);">Barbershop</div>
+          <div style="font-family:'Inria Serif',serif; font-size:clamp(20px,3vw,36px); font-weight:400; font-style:italic; color:var(--or); margin-top:8px;">La confiance & l'estime de soi</div>
+          <div style="font-family:'Inria Serif',serif; font-size:18px; font-weight:300; color:var(--gris-clair); margin-top:8px;">Prestations · Abonnements · Salons</div>
+        </div>
+      </div>
+
+      <div class="typo-row">
+        <div>
+          <div class="typo-meta-name">Inter</div>
+          <div class="typo-meta-detail">Corps de texte, labels,<br>navigation, boutons<br>weight 300–700</div>
+        </div>
+        <div>
+          <div style="font-size:20px; font-weight:600; letter-spacing:0.05em; color:var(--blanc-casse); text-transform:uppercase; margin-bottom:8px;">COUPE TONDEUSE</div>
+          <div style="font-size:13px; font-weight:300; color:var(--gris-clair); line-height:1.8; max-width:480px;">La coupe tondeuse est une technique de coiffure rapide et précise, idéale pour des styles nets et uniformes. Parfaite pour ceux qui recherchent une coupe pratique et facile à entretenir.</div>
+          <div style="font-size:9px; font-weight:500; letter-spacing:0.4em; text-transform:uppercase; color:var(--or); margin-top:12px;">Label · Catégorie · Navigation</div>
+        </div>
+      </div>
+
+      <div class="typo-row">
+        <div>
+          <div class="typo-meta-name">Échelle</div>
+          <div class="typo-meta-detail">Scale type complète</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="font-family:'Inria Serif',serif; font-size:48px; font-weight:700; color:var(--blanc-casse); line-height:1;">H1 — 48px Serif Bold</div>
+          <div style="font-family:'Inria Serif',serif; font-size:32px; font-weight:700; color:var(--blanc-casse); line-height:1.1;">H2 — 32px Serif Bold</div>
+          <div style="font-family:'Inria Serif',serif; font-size:22px; font-weight:400; color:var(--blanc-casse);">H3 — 22px Serif Regular</div>
+          <div style="font-size:15px; font-weight:500; color:var(--blanc-casse);">Body large — 15px Inter Medium</div>
+          <div style="font-size:13px; font-weight:300; color:var(--gris-clair);">Body — 13px Inter Light</div>
+          <div style="font-size:11px; font-weight:300; color:var(--gris-clair);">Body small — 11px Inter Light</div>
+          <div style="font-size:9px; font-weight:500; letter-spacing:0.35em; text-transform:uppercase; color:var(--or);">LABEL / EYEBROW — 9px Inter · tracking 0.35em</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       03. ORNEMENTS
+       =================================================== -->
+  <div class="section" id="ornements">
+    <div class="section-eyebrow">03 — Ornements</div>
+    <h2 class="section-title">Séparateurs & Décors</h2>
+    <p class="section-desc">Lignes dégradées dorées pour casser les zones trop sombres ou trop uniformes — signature visuelle FIT'CARE.</p>
+
+    <div class="orn-grid">
+      <div class="orn-item">
+        <div class="divider-gold" style="width:240px; margin:0;">
+          <div class="divider-gold-line"></div>
+          <div class="divider-gold-mark"></div>
+          <div class="divider-gold-line"></div>
+        </div>
+        <div class="orn-label">Divider centré losange</div>
+      </div>
+
+      <div class="orn-item">
+        <div style="width:240px; height:1px; background:linear-gradient(to right, transparent, var(--or), transparent);"></div>
+        <div class="orn-label">Ligne dégradée dorée</div>
+      </div>
+
+      <div class="orn-item">
+        <div style="display:flex; align-items:center; gap:12px; width:200px;">
+          <div style="flex:1; height:1px; background:var(--or); opacity:0.4;"></div>
+          <span style="color:var(--or); font-size:14px;">✂</span>
+          <div style="flex:1; height:1px; background:var(--or); opacity:0.4;"></div>
+        </div>
+        <div class="orn-label">Séparateur ciseaux</div>
+      </div>
+
+      <div class="orn-item">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <div style="width:20px; height:1px; background:var(--or);"></div>
+          <span style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--or); font-family:var(--sans);">Section</span>
+          <div style="width:60px; height:1px; background:linear-gradient(to right, var(--gris-border), transparent);"></div>
+        </div>
+        <div class="orn-label">Eyebrow section</div>
+      </div>
+
+      <div class="orn-item">
+        <svg width="72" height="72" viewBox="0 0 80 80" fill="none">
+          <polygon points="40,4 72,22 72,58 40,76 8,58 8,22" stroke="#C09A50" stroke-width="1.2" fill="none"/>
+        </svg>
+        <div class="orn-label">Hexagone logo</div>
+      </div>
+
+      <div class="orn-item">
+        <div style="width:6px; height:6px; background:var(--or); transform:rotate(45deg);"></div>
+        <div class="orn-label">Losange doré</div>
+      </div>
+    </div>
+
+    <!-- Exemples de bordure carte -->
+    <div style="margin-top:var(--s6); display:grid; grid-template-columns:1fr 1fr; gap:var(--s4);">
+      <div>
+        <span class="demo-label">Bordure or subtile</span>
+        <div style="height:60px; border:1px solid rgba(192,154,80,0.35); background:var(--noir-mat); display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:10px; letter-spacing:0.2em; color:var(--gris-moyen);">border-or-subtle</span>
+        </div>
+      </div>
+      <div>
+        <span class="demo-label">Bordure or pleine</span>
+        <div style="height:60px; border:1px solid var(--or); background:var(--noir-mat); display:flex; align-items:center; justify-content:center;">
+          <span style="font-size:10px; letter-spacing:0.2em; color:var(--gris-moyen);">border-or (hover / focus)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       04. BOUTONS
+       =================================================== -->
+  <div class="section" id="boutons">
+    <div class="section-eyebrow">04 — Boutons</div>
+    <h2 class="section-title">Actions</h2>
+
+    <span class="demo-label">Primaires</span>
+    <div class="comp-group" style="margin-bottom:var(--s5);">
+      <button class="btn btn-primary">Prendre rendez-vous</button>
+      <button class="btn btn-primary btn-arrow">Voir plus</button>
+      <button class="btn btn-reserver">Réserver</button>
+    </div>
+
+    <span class="demo-label">Contours</span>
+    <div class="comp-group" style="margin-bottom:var(--s5);">
+      <button class="btn btn-or">Voir nos prestations</button>
+      <button class="btn btn-or btn-arrow">Voir plus de salons</button>
+      <button class="btn btn-ghost">Voir plus d'articles</button>
+    </div>
+
+    <span class="demo-label">Bouton cercle → (carousel)</span>
+    <div class="comp-group" style="margin-bottom:var(--s5);">
+      <button class="btn-circle-arrow">←</button>
+      <button class="btn-circle-arrow">→</button>
+    </div>
+
+    <span class="demo-label">Filtres / onglets</span>
+    <div class="comp-group">
+      <button class="btn btn-filter active">Toutes</button>
+      <button class="btn btn-filter">Catégorie 1</button>
+      <button class="btn btn-filter">Catégorie 2</button>
+      <button class="btn btn-filter">Catégorie 3</button>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       05. BADGES
+       =================================================== -->
+  <div class="section" id="badges">
+    <div class="section-eyebrow">05 — Badges</div>
+    <h2 class="section-title">Étiquettes</h2>
+
+    <div class="comp-group">
+      <span class="badge badge-or">Nouveauté</span>
+      <span class="badge badge-or">Dès 15€</span>
+      <span class="badge badge-blanc">Catégorie</span>
+      <span class="badge badge-solid">Recommandé</span>
+      <span class="badge badge-muted">Prochaine ouverture</span>
+      <span class="badge badge-upcoming">À venir — Bondy</span>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       06. NAVIGATION
+       =================================================== -->
+  <div class="section" id="nav">
+    <div class="section-eyebrow">06 — Navigation</div>
+    <h2 class="section-title">Menus</h2>
+
+    <!-- Desktop -->
+    <span class="demo-label">Navigation desktop</span>
+    <div class="nav-demo" style="margin-bottom:var(--s5);">
+      <div>
+        <div class="nav-logo">FIT'CARE</div>
+        <div class="nav-logo-sub">Confiance &amp; Estime de soi</div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Accueil</a></li>
+        <li><a href="#">La Marque</a></li>
+        <li><a href="#">Prestations</a></li>
+        <li><a href="#">Nos Salons</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Actualités</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="nav-btn-outline">Devenir partenaire</button>
+        <button class="nav-btn-solid">Postuler</button>
+      </div>
+    </div>
+
+    <!-- Mobile -->
+    <span class="demo-label">Navigation mobile (menu ouvert)</span>
+    <div class="nav-mobile-demo">
+      <div class="nav-mobile-top">
+        <div>
+          <div class="nav-mobile-logo">FIT'CARE</div>
+          <div class="nav-mobile-logo-sub">Confiance &amp; Estime de soi</div>
+        </div>
+        <div class="nav-mobile-hamburger">
+          <span></span><span style="width:16px;"></span><span></span>
+        </div>
+      </div>
+      <div class="nav-mobile-menu">
+        <div class="nav-mobile-item active">Accueil <span>→</span></div>
+        <div class="nav-mobile-item">La Marque <span>→</span></div>
+        <div class="nav-mobile-item">Prestations <span>→</span></div>
+        <div class="nav-mobile-item">Abonnements <span>→</span></div>
+        <div class="nav-mobile-item">Réservation <span>→</span></div>
+        <div class="nav-mobile-item">Contact <span>→</span></div>
+        <div class="nav-mobile-item">Blog <span>→</span></div>
+        <div class="nav-mobile-item">Devenir partenaire <span>→</span></div>
+        <div class="nav-mobile-item cta">Postuler <span>→</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       07. HERO
+       =================================================== -->
+  <div class="section" id="hero">
+    <div class="section-eyebrow">07 — Hero</div>
+    <h2 class="section-title">Hero / Carousel</h2>
+
+    <div class="hero-demo">
+      <div class="hero-demo-label">Image promotionnelle ou carousel</div>
+      <div style="font-family:'Inria Serif',serif; font-size:clamp(28px,4vw,48px); font-weight:700; color:var(--blanc); letter-spacing:0.04em;">FIT'CARE · BARBERSHOP</div>
+      <div style="font-family:var(--sans); font-size:11px; color:var(--gris-clair); letter-spacing:0.15em; text-align:center;">Offres exclusives · Partenaire Fitness Park</div>
+      <div class="hero-cta-group">
+        <button class="btn btn-primary">Prendre rendez-vous</button>
+      </div>
+      <div class="hero-dots">
+        <div class="hero-dot active"></div>
+        <div class="hero-dot"></div>
+        <div class="hero-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       08. CARDS SALON
+       =================================================== -->
+  <div class="section" id="salons">
+    <div class="section-eyebrow">08 — Cards Salon</div>
+    <h2 class="section-title">Nos Salons</h2>
+    <p class="section-desc">Chaque salon est une entrée cliquable avec photo, informations pratiques et CTA réservation.</p>
+
+    <div class="salons-grid">
+      <!-- Salon actif -->
+      <div class="salon-card">
+        <div class="salon-card-img">Photo</div>
+        <div class="salon-card-body">
+          <div class="salon-card-name">BAGNOLET</div>
+          <div class="salon-card-address">3-7 rue Angela Davis,<br>93170 Bagnolet</div>
+          <div class="salon-card-tel">00 00 00 00 00</div>
+          <div class="salon-card-tags">
+            <div class="salon-card-tag"></div>
+            <div class="salon-card-tag"></div>
+            <div class="salon-card-tag"></div>
+          </div>
+          <div class="salon-card-footer">
+            <button class="btn btn-reserver" style="font-size:9px; padding:8px 20px;">Réserver</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Salon actif 2 -->
+      <div class="salon-card">
+        <div class="salon-card-img">Photo</div>
+        <div class="salon-card-body">
+          <div class="salon-card-name">CORMEILLES</div>
+          <div class="salon-card-address">ZAC des Bois Rochefort,<br>Bd du Parisis, 95240 Cormeilles</div>
+          <div class="salon-card-tel">00 00 00 00 00</div>
+          <div class="salon-card-tags">
+            <div class="salon-card-tag"></div>
+            <div class="salon-card-tag"></div>
+            <div class="salon-card-tag"></div>
+          </div>
+          <div class="salon-card-footer">
+            <button class="btn btn-reserver" style="font-size:9px; padding:8px 20px;">Réserver</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prochaine ouverture -->
+      <div class="salon-card upcoming">
+        <div class="salon-card-img" style="position:relative; overflow:hidden;">
+          <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:4px;">
+            <span style="font-size:7px; letter-spacing:0.3em; text-transform:uppercase; color:var(--or);">Prochaine</span>
+            <span style="font-size:7px; letter-spacing:0.3em; text-transform:uppercase; color:var(--or);">Ouverture</span>
+          </div>
+        </div>
+        <div class="salon-card-body">
+          <div class="salon-card-name" style="color:var(--gris-moyen);">BONDY</div>
+          <div class="salon-card-address" style="color:var(--gris-fonce);">??? · 00 00 00 00 00</div>
+          <div class="salon-card-footer">
+            <button class="btn btn-ghost" style="font-size:9px; padding:7px 20px; opacity:0.5;" disabled>Bientôt</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       09. CARDS PRESTATION
+       =================================================== -->
+  <div class="section" id="prestations">
+    <div class="section-eyebrow">09 — Cards Prestation</div>
+    <h2 class="section-title">Coupes & Barbes</h2>
+
+    <div class="prestations-grid">
+      <div class="prestation-card">
+        <div class="prestation-card-img">Photo coupe</div>
+        <div class="prestation-card-body">
+          <div class="prestation-card-header">
+            <div class="prestation-card-name">Coupe Tondeuse</div>
+            <div class="prestation-card-price">dès 15€</div>
+          </div>
+          <p class="prestation-card-desc">Technique rapide et précise, idéale pour des styles nets et uniformes. Un look soigné en un rien de temps.</p>
+          <button class="btn btn-reserver" style="font-size:9px; padding:8px 20px;">Réserver</button>
+        </div>
+      </div>
+
+      <div class="prestation-card">
+        <div class="prestation-card-img">Photo barbe</div>
+        <div class="prestation-card-body">
+          <div class="prestation-card-header">
+            <div class="prestation-card-name">Taille de Barbe</div>
+            <div class="prestation-card-price">dès 15€</div>
+          </div>
+          <p class="prestation-card-desc">Sculpture des contours et finition impeccable. Service personnalisé selon vos besoins.</p>
+          <button class="btn btn-reserver" style="font-size:9px; padding:8px 20px;">Réserver</button>
+        </div>
+      </div>
+
+      <div class="prestation-card">
+        <div class="prestation-card-img">Photo coupe + barbe</div>
+        <div class="prestation-card-body">
+          <div class="prestation-card-header">
+            <div class="prestation-card-name">Coupe + Barbe</div>
+            <div class="prestation-card-price">dès 25€</div>
+          </div>
+          <p class="prestation-card-desc">Le combo complet pour un résultat parfait de la tête aux contours.</p>
+          <button class="btn btn-reserver" style="font-size:9px; padding:8px 20px;">Réserver</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barre de recherche prestation -->
+    <div style="margin-top:var(--s5);">
+      <span class="demo-label">Barre de recherche prestations</span>
+      <div style="border-bottom:1px solid var(--gris-border); max-width:320px; display:flex; align-items:center; gap:var(--s3); padding:10px 0;">
+        <input style="background:transparent; border:none; outline:none; color:var(--blanc-casse); font-family:var(--sans); font-size:13px; font-weight:300; flex:1;" placeholder="Rechercher...">
+        <span style="color:var(--gris-moyen);">⚲</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       10. CARDS FORFAIT
+       =================================================== -->
+  <div class="section" id="forfaits">
+    <div class="section-eyebrow">10 — Cards Forfait</div>
+    <h2 class="section-title">Abonnements</h2>
+
+    <div class="forfaits-grid">
+      <div class="forfait-card">
+        <div class="forfait-name">Abonnement<br>Fitmax</div>
+        <div class="forfait-detail">4 coupes</div>
+        <div class="forfait-price">50<sup>€</sup></div>
+        <button class="btn btn-or" style="font-size:9px; padding:10px 24px;">Choisir</button>
+      </div>
+
+      <div class="forfait-card featured">
+        <div class="forfait-badge">Recommandé</div>
+        <div class="forfait-name" style="margin-top:var(--s3);">Abonnement<br>Fullmax</div>
+        <div class="forfait-detail">4 coupes et barbes</div>
+        <div class="forfait-price">70<sup>€</sup></div>
+        <button class="btn btn-primary" style="font-size:9px; padding:10px 24px;">Choisir</button>
+      </div>
+
+      <!-- Forfait générique (composant de base) -->
+      <div class="forfait-card">
+        <div class="forfait-name" style="font-size:16px;">TITRE DU FORFAIT</div>
+        <div class="forfait-detail">Texte détail du forfait</div>
+        <div class="forfait-price" style="font-size:36px;">00<sup>€</sup></div>
+        <button class="btn btn-or" style="font-size:9px; padding:10px 24px;">Choisir</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       11. CARDS VALEUR
+       =================================================== -->
+  <div class="section" id="valeurs">
+    <div class="section-eyebrow">11 — Cards Valeur / Attribut</div>
+    <h2 class="section-title">Nos Valeurs</h2>
+
+    <!-- Variante petite (3 colonnes) -->
+    <span class="demo-label">Variante compacte — 3 colonnes</span>
+    <div class="valeurs-grid" style="margin-bottom:var(--s5);">
+      <div class="valeur-card">
+        <div class="valeur-card-img"></div>
+        <div class="valeur-card-title">Excellence</div>
+        <p class="valeur-card-desc">Notre équipe est composée de professionnels passionnés et à l'écoute.</p>
+      </div>
+      <div class="valeur-card">
+        <div class="valeur-card-img"></div>
+        <div class="valeur-card-title">Confiance</div>
+        <p class="valeur-card-desc">Un service pensé dans ses moindres détails pour votre confort et votre bien-être.</p>
+      </div>
+      <div class="valeur-card">
+        <div class="valeur-card-img"></div>
+        <div class="valeur-card-title">Style</div>
+        <p class="valeur-card-desc">Chaque coupe reflète votre personnalité. Votre style, votre identité.</p>
+      </div>
+    </div>
+
+    <!-- Variante large (pleine largeur) -->
+    <span class="demo-label">Variante large — pleine largeur</span>
+    <div class="valeurs-grid-large">
+      <div class="valeur-card-title">Attribut</div>
+      <p class="valeurs-grid-large valeur-card-desc" style="border:none; background:transparent; padding:0; gap:0;">Notre équipe est composée de professionnels passionnés et à l'écoute.</p>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       12. CARDS CTA
+       =================================================== -->
+  <div class="section" id="cta">
+    <div class="section-eyebrow">12 — Cards CTA</div>
+    <h2 class="section-title">Impose ton style · Rejoins-nous</h2>
+    <p class="section-desc">Blocs d'appel à l'action en bas de page — clients, barbers, entrepreneurs.</p>
+
+    <div class="cta-cards-grid">
+      <div class="cta-card">
+        <div class="cta-card-label">Clients</div>
+        <div class="cta-card-action">Prendre<br>rendez-vous</div>
+        <button class="btn-circle-arrow">→</button>
+      </div>
+      <div class="cta-card">
+        <div class="cta-card-label">Barbers</div>
+        <div class="cta-card-action">Postulez</div>
+        <button class="btn-circle-arrow">→</button>
+      </div>
+      <div class="cta-card">
+        <div class="cta-card-label">Entrepreneurs</div>
+        <div class="cta-card-action">Devenez<br>franchisés</div>
+        <button class="btn-circle-arrow">→</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       13. CARDS ARTICLE
+       =================================================== -->
+  <div class="section" id="articles">
+    <div class="section-eyebrow">13 — Cards Article</div>
+    <h2 class="section-title">Blog & Actualités</h2>
+
+    <!-- Variante avec overlay texte sur image -->
+    <span class="demo-label">Variante overlay (hero article)</span>
+    <div class="articles-grid" style="margin-bottom:var(--s6);">
+      <div class="article-card" style="grid-column: span 2;">
+        <div class="prestation-card-img" style="height:240px; position:relative;">
+          Photo article
+          <div class="article-card-overlay"></div>
+          <div class="article-card-footer-overlay">
+            <div class="article-card-title-overlay">TITRE DE L'ARTICLE</div>
+            <div class="article-card-meta-overlay">
+              <span>Catégorie</span><span>01 Janvier 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="prestation-card-img" style="height:160px; position:relative;">
+          Photo article
+          <div class="article-card-overlay"></div>
+          <div style="position:absolute; bottom:0; left:0; right:0; padding:var(--s3) var(--s4) var(--s3);">
+            <div style="font-size:9px; letter-spacing:0.1em; color:var(--gris-clair);">Détails</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Variante grille liste -->
+    <span class="demo-label">Variante grille (liste articles)</span>
+    <div class="articles-grid-3">
+      <div class="article-card">
+        <div class="prestation-card-img" style="height:160px; position:relative;">
+          Photo
+          <div class="article-card-overlay"></div>
+          <div class="article-card-footer-overlay">
+            <div class="article-card-title-overlay">TITRE DE L'ARTICLE</div>
+            <div class="article-card-meta-overlay"><span>Catégorie</span><span>01 Janv. 2025</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="prestation-card-img" style="height:160px; position:relative;">
+          Photo
+          <div class="article-card-overlay"></div>
+          <div class="article-card-footer-overlay">
+            <div class="article-card-title-overlay">TITRE DE L'ARTICLE</div>
+            <div class="article-card-meta-overlay"><span>Catégorie</span><span>01 Janv. 2025</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="prestation-card-img" style="height:160px; position:relative;">
+          Photo
+          <div class="article-card-overlay"></div>
+          <div class="article-card-footer-overlay">
+            <div class="article-card-title-overlay">TITRE DE L'ARTICLE</div>
+            <div class="article-card-meta-overlay"><span>Catégorie</span><span>01 Janv. 2025</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div style="display:flex; justify-content:center; gap:var(--s2); margin-top:var(--s5);">
+      <button class="btn btn-ghost" style="font-size:10px; padding:8px 12px;">‹</button>
+      <button class="btn btn-filter active" style="font-size:10px; padding:8px 12px;">1</button>
+      <button class="btn btn-filter" style="font-size:10px; padding:8px 12px;">2</button>
+      <button class="btn btn-filter" style="font-size:10px; padding:8px 12px;">3</button>
+      <button class="btn btn-filter" style="font-size:10px; padding:8px 12px;">4</button>
+      <button class="btn btn-filter" style="font-size:10px; padding:8px 12px;">5</button>
+      <button class="btn btn-ghost" style="font-size:10px; padding:8px 12px;">›</button>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       14. AVIS CLIENTS
+       =================================================== -->
+  <div class="section" id="avis">
+    <div class="section-eyebrow">14 — Avis Clients</div>
+    <h2 class="section-title">Témoignages</h2>
+
+    <div class="avis-grid">
+      <div class="avis-card">
+        <div class="avis-pseudo">Pseudo</div>
+        <p class="avis-comment">"Commentaire, super expérience ! Personnel gentil, agréable, 5 étoiles..."</p>
+        <div class="avis-stars">★★★★★</div>
+      </div>
+      <div class="avis-card">
+        <div class="avis-pseudo">Pseudo</div>
+        <p class="avis-comment">"Commentaire, super expérience ! Personnel gentil, agréable, 5 étoiles..."</p>
+        <div class="avis-stars">★★★★★</div>
+      </div>
+      <div class="avis-card">
+        <div class="avis-pseudo">Pseudo</div>
+        <p class="avis-comment">"Commentaire, super expérience ! Personnel gentil, agréable, 5 étoiles..."</p>
+        <div class="avis-stars">★★★★★</div>
+      </div>
+    </div>
+
+    <div class="carousel-nav" style="max-width:400px;">
+      <button class="btn-circle-arrow">←</button>
+      <div class="carousel-dots">
+        <div class="carousel-dot active"></div>
+        <div class="carousel-dot"></div>
+        <div class="carousel-dot"></div>
+      </div>
+      <button class="btn-circle-arrow">→</button>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       15. FORMULAIRES
+       =================================================== -->
+  <div class="section" id="forms">
+    <div class="section-eyebrow">15 — Formulaires</div>
+    <h2 class="section-title">Contact & Candidature</h2>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--s6);">
+      <!-- Formulaire contact -->
+      <div class="form-wrap">
+        <div class="form-title">Nous contacter</div>
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label">Nom</label>
+            <input class="field-input" type="text" placeholder="Dupont">
+          </div>
+          <div class="field">
+            <label class="field-label">Prénom</label>
+            <input class="field-input" type="text" placeholder="Marc">
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label">Adresse e-mail</label>
+          <input class="field-input" type="email" placeholder="marc@email.com">
+        </div>
+        <div class="field">
+          <label class="field-label">Objet</label>
+          <select class="field-select">
+            <option value="">Choisir un objet...</option>
+            <option>Renseignements</option>
+            <option>Partenariat</option>
+            <option>Réclamation</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-label">Message</label>
+          <textarea class="field-textarea" placeholder="Votre message..."></textarea>
+        </div>
+        <div class="field">
+          <div class="field-file">
+            <input class="field-file-input" type="text" placeholder="Pièces jointes">
+            <button class="field-file-btn">Parcourir...</button>
+          </div>
+        </div>
+        <button class="form-submit">Envoyer</button>
+      </div>
+
+      <!-- Formulaire postuler -->
+      <div class="form-wrap">
+        <div class="form-title">Postuler</div>
+        <div class="field-row">
+          <div class="field">
+            <label class="field-label">Nom</label>
+            <input class="field-input" type="text" placeholder="Dupont">
+          </div>
+          <div class="field">
+            <label class="field-label">Prénom</label>
+            <input class="field-input" type="text" placeholder="Marc">
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label">Adresse e-mail</label>
+          <input class="field-input" type="email" placeholder="marc@email.com">
+        </div>
+        <div class="field">
+          <label class="field-label">Objet</label>
+          <select class="field-select">
+            <option value="">Type de candidature...</option>
+            <option>Barber</option>
+            <option>Franchisé</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-label">Message</label>
+          <textarea class="field-textarea" placeholder="Parlez-nous de vous..."></textarea>
+        </div>
+        <div class="field">
+          <div class="field-file">
+            <input class="field-file-input" type="text" placeholder="CV, Portfolio...">
+            <button class="field-file-btn">Parcourir...</button>
+          </div>
+        </div>
+        <button class="form-submit">Envoyer ma candidature</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       16. ÉQUIPE
+       =================================================== -->
+  <div class="section" id="equipe">
+    <div class="section-eyebrow">16 — Équipe / Barbers</div>
+    <h2 class="section-title">Notre Équipe</h2>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:var(--s4);">
+      <div class="barber-card">
+        <div class="barber-card-photo"></div>
+        <div class="barber-card-role">Barber</div>
+        <div class="barber-card-name">Prénom Nom</div>
+        <p class="barber-card-desc">Passionné par son art, expert dans les coupes modernes et le rasage traditionnel.</p>
+      </div>
+      <div class="barber-card">
+        <div class="barber-card-photo"></div>
+        <div class="barber-card-role">Senior Barber</div>
+        <div class="barber-card-name">Prénom Nom</div>
+        <p class="barber-card-desc">Spécialiste barbe et dégradés, 8 ans d'expérience en barbershop de luxe.</p>
+      </div>
+      <div class="barber-card">
+        <div class="barber-card-photo"></div>
+        <div class="barber-card-role">Manager</div>
+        <div class="barber-card-name">Prénom Nom</div>
+        <p class="barber-card-desc">À l'écoute de chaque client pour une expérience sur-mesure et inoubliable.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       17. QUIZZ / SÉLECTEUR PROFIL
+       =================================================== -->
+  <div class="section" id="quizz">
+    <div class="section-eyebrow">17 — Quizz & Sélecteur profil</div>
+    <h2 class="section-title">Orientation partenaire</h2>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--s6);">
+      <!-- Sélecteur profil -->
+      <div>
+        <span class="demo-label">Sélecteur de profil partenaire</span>
+        <div style="font-family:var(--sans); font-size:13px; color:var(--blanc-casse); margin-bottom:var(--s4); letter-spacing:0.05em;">Choisissez votre profil :</div>
+        <div class="profil-selector">
+          <div class="profil-btn selected">
+            <div class="profil-btn-icon"></div>
+            <div class="profil-btn-label">Gérer mon siège</div>
+          </div>
+          <div class="profil-btn">
+            <div class="profil-btn-icon"></div>
+            <div class="profil-btn-label">Gérer le salon</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mini quizz -->
+      <div>
+        <span class="demo-label">Mini quizz franchisé</span>
+        <div class="quizz-wrap">
+          <div class="quizz-title">Vous n'êtes pas sûr(e) ? Faites notre quizz !</div>
+          <div class="quizz-question">Est-ce que vous avez la condition A ?</div>
+          <div class="quizz-options">
+            <button class="quizz-option selected">Option A</button>
+            <button class="quizz-option">Option B</button>
+          </div>
+          <div class="quizz-footer">
+            <button class="btn btn-ghost" style="font-size:9px; padding:9px 20px;">Précédent</button>
+            <span class="quizz-step">1 / 4</span>
+            <button class="btn btn-or" style="font-size:9px; padding:9px 20px;">Suivant</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       18. VIDÉO
+       =================================================== -->
+  <div class="section" id="video">
+    <div class="section-eyebrow">18 — Lecteur vidéo</div>
+    <h2 class="section-title">YouTube Embed</h2>
+
+    <div class="video-placeholder">
+      <div class="video-placeholder-icon">▶</div>
+      <span>Lecteur YouTube</span>
+    </div>
+  </div>
+
+  <div class="divider-gold"><div class="divider-gold-line"></div><div class="divider-gold-mark"></div><div class="divider-gold-line"></div></div>
+
+  <!-- ===================================================
+       19. ESPACEMENT
+       =================================================== -->
+  <div class="section" id="spacing">
+    <div class="section-eyebrow">19 — Espacement</div>
+    <h2 class="section-title">Scale d'espacement</h2>
+
+    <div class="spacing-demo">
+      <div class="spacing-item"><div class="spacing-block" style="width:4px; height:4px;"></div><div class="spacing-val">s1 · 4px</div></div>
+      <div class="spacing-item"><div class="spacing-block" style="width:8px; height:8px;"></div><div class="spacing-val">s2 · 8px</div></div>
+      <div class="spacing-item"><div class="spacing-block" style="width:12px; height:12px;"></div><div class="spacing-val">s3 · 12px</div></div>
+      <div class="spacing-item"><div class="spacing-block" style="width:16px; height:16px;"></div><div class="spacing-val">s4 · 16px</div></div>
+      <div class="spacing-item"><div class="spacing-block" style="width:24px; height:24px;"></div><div class="spacing-val">s5 · 24px</div></div>
+      <div class="spacing-item"><div class="spacing-block" style="width:32px; height:32px;"></div><div class="spacing-val">s6 · 32px</div></div>
+      <div class="spacing-item"><div class="spacing-block" style="width:48px; height:48px;"></div><div class="spacing-val">s7 · 48px</div></div>
+      <div class="spacing-item"><div class="spacing-block" style="width:64px; height:64px;"></div><div class="spacing-val">s8 · 64px</div></div>
+      <div class="spacing-item"><div class="spacing-block" style="width:80px; height:80px;"></div><div class="spacing-val">s9 · 96px</div></div>
+    </div>
+  </div>
+
+  <!-- Divider final -->
+  <div class="divider-gold" style="margin-top:var(--s9);">
+    <div class="divider-gold-line"></div>
+    <div class="divider-gold-mark"></div>
+    <div class="divider-gold-line"></div>
+  </div>
+
+</div><!-- /page -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">FIT'CARE</div>
+  <div class="footer-tagline">La confiance ✂ L'estime de soi</div>
+  <svg width="56" height="56" viewBox="0 0 80 80" fill="none" style="margin:0 auto 20px; display:block; opacity:0.35;">
+    <polygon points="40,4 72,22 72,58 40,76 8,58 8,22" stroke="#C09A50" stroke-width="1.2" fill="none"/>
+  </svg>
+  <div class="footer-meta">
+    Design System · Barbershop · v1.0<br>
+    <span style="color:var(--gris-border); margin-top:4px; display:block;">Palette · Typographie · Composants · Patterns — Site vitrine</span>
+  </div>
+</footer>
+
+</body>
+</html>

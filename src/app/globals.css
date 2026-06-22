@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ============================================================
+   TOKENS — FIT'CARE
+   ============================================================ */
+:root {
+  --noir-absolu:  #000000;
+  --noir-profond: #0A0A0A;
+  --noir-mat:     #111111;
+  --noir-soft:    #1A1A1A;
+  --noir-card:    #141414;
+
+  --or:           #AE986C;
+  --or-light:     #C4AF8A;
+  --or-pale:      #DDD0B0;
+  --or-dark:      #7A6840;
+  --or-muted:     rgba(174, 152, 108, 0.25);
+
+  --beige:        #C8A96E;
+  --beige-light:  #DFC49A;
+
+  --blanc:        #FFFFFF;
+  --blanc-casse:  #F0F0F0;
+  --gris-clair:   #A0A0A0;
+  --gris-moyen:   #666666;
+  --gris-fonce:   #333333;
+  --gris-border:  #2A2A2A;
+
+  --serif: 'Inria Serif', Georgia, serif;
+  --sans:  'Inter', system-ui, sans-serif;
+
+  --s1: 4px;  --s2: 8px;   --s3: 12px; --s4: 16px;
+  --s5: 24px; --s6: 32px;  --s7: 48px; --s8: 64px; --s9: 96px;
+
+  --radius-0:  0px;
+  --radius-sm: 3px;
+  --radius-md: 6px;
+
+  --border-or:        1px solid var(--or);
+  --border-or-subtle: 1px solid rgba(174, 152, 108, 0.35);
+
+  --nav-height: 64px;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+}
+
+body {
+  background: var(--noir-absolu);
+  color: var(--blanc-casse);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   UTILITAIRES GLOBAUX
+   ============================================================ */
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 var(--s5);
+}
+
+.sectionEyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: var(--s3);
+}
+.sectionEyebrow::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--or);
+}
+.sectionEyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--gris-border), transparent);
+}
+
+.sectionTitle {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  color: var(--blanc-casse);
+  margin-bottom: var(--s3);
+}
+
+.sectionDesc {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--gris-clair);
+  max-width: 560px;
+  line-height: 1.8;
+  margin-bottom: var(--s5);
+  letter-spacing: 0.02em;
+}
+
+.dividerGold {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  margin: var(--s7) 0;
+}
+.dividerGoldLine {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--or), transparent);
+}
+.dividerGoldMark {
+  width: 6px;
+  height: 6px;
+  background: var(--or);
+  transform: rotate(45deg);
+}

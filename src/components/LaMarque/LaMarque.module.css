@@ -1,0 +1,150 @@
+.section {
+  padding: var(--s9) 0;
+  background: var(--noir-absolu);
+}
+
+/* Slogan image */
+.sloganWrap {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  margin-top: var(--s5);
+  overflow: hidden;
+}
+
+.sloganOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.15) 0%,
+    rgba(0,0,0,0.5) 100%
+  );
+}
+
+/* 5 étapes layout */
+.etapesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s8);
+  align-items: center;
+  margin-top: var(--s6);
+}
+
+.etapesImg {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+}
+
+.etapesTitle {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 700;
+  color: var(--blanc-casse);
+  line-height: 1.2;
+  margin-bottom: var(--s4);
+}
+
+.etapesDesc {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--gris-clair);
+  line-height: 1.8;
+  margin-bottom: var(--s5);
+}
+
+.etapesSteps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  padding: var(--s3) 0;
+  border-bottom: 1px solid var(--gris-border);
+}
+
+.stepNum {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--or);
+  min-width: 32px;
+}
+
+.stepLabel {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--blanc-casse);
+}
+
+/* Avant / Après */
+.avantApres {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s8);
+  align-items: center;
+  margin-top: var(--s8);
+}
+
+.avantApresImg {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+  order: 2;
+}
+
+.avantApresText {
+  order: 1;
+}
+
+.btnOr {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--or);
+  border: 1px solid var(--or);
+  padding: 12px var(--s6);
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.btnOr:hover {
+  background: var(--or);
+  color: var(--noir-absolu);
+}
+
+@media (max-width: 768px) {
+  .etapesGrid,
+  .avantApres {
+    grid-template-columns: 1fr;
+    gap: var(--s5);
+  }
+
+  .etapesImg,
+  .avantApresImg {
+    height: 260px;
+  }
+
+  .avantApresImg {
+    order: 0;
+  }
+
+  .avantApresText {
+    order: 0;
+  }
+
+  .sloganWrap {
+    height: 220px;
+  }
+}

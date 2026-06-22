@@ -1,0 +1,165 @@
+.footer {
+  background: var(--noir-absolu);
+  position: relative;
+}
+
+.topLine {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--or), transparent);
+}
+
+.inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--s8) var(--s5);
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--s8);
+}
+
+/* Brand column */
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+}
+
+.brandName {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--blanc);
+}
+
+.brandTagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--or);
+  letter-spacing: 0.08em;
+}
+
+.hex {
+  opacity: 0.4;
+}
+
+/* Social icons */
+.socials {
+  display: flex;
+  gap: var(--s3);
+  margin-top: var(--s2);
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: var(--border-or-subtle);
+  color: var(--gris-clair);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.socialLink:hover {
+  border-color: var(--or);
+  color: var(--or);
+}
+
+/* Links column */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+.linksTitle {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: var(--s2);
+}
+
+.link {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--gris-clair);
+  text-decoration: none;
+  transition: color 0.2s;
+  letter-spacing: 0.05em;
+}
+
+.link:hover {
+  color: var(--blanc-casse);
+}
+
+/* Salons column */
+.salons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+.salonItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.salonNom {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blanc-casse);
+}
+
+.salonAddr {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--gris-moyen);
+}
+
+/* Bottom */
+.bottom {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 var(--s5) var(--s6);
+}
+
+.bottomLine {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(174, 152, 108, 0.2), transparent);
+  margin-bottom: var(--s4);
+}
+
+.meta {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gris-moyen);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: var(--s6);
+    padding: var(--s6) var(--s5);
+  }
+
+  .socials {
+    flex-direction: row;
+  }
+}

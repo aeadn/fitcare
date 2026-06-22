@@ -1,0 +1,183 @@
+.section {
+  padding: var(--s9) 0;
+  background: var(--noir-profond);
+  position: relative;
+}
+
+.section::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--or), transparent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s4);
+  align-items: start;
+}
+
+/* Forfait card */
+.card {
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  padding: var(--s6) var(--s5);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s3);
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: var(--or);
+}
+
+.featured {
+  border: var(--border-or);
+  background: var(--noir-soft);
+}
+
+.badge {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--or);
+  color: var(--noir-absolu);
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 3px 16px;
+  white-space: nowrap;
+}
+
+.nom {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--blanc-casse);
+  margin-top: var(--s3);
+}
+
+.detail {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--gris-clair);
+  line-height: 1.6;
+}
+
+.prix {
+  font-family: var(--serif);
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--blanc);
+  line-height: 1;
+}
+
+.prix sup {
+  font-size: 24px;
+  vertical-align: super;
+}
+
+.btnPrimary {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: var(--blanc-casse);
+  color: var(--noir-absolu);
+  border: 1px solid var(--blanc-casse);
+  padding: 10px 24px;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.btnPrimary:hover {
+  background: var(--or);
+  border-color: var(--or);
+}
+
+.btnOr {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--or);
+  border: 1px solid var(--or);
+  padding: 10px 24px;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.btnOr:hover {
+  background: var(--or);
+  color: var(--noir-absolu);
+}
+
+/* Info card */
+.infoCard {
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  padding: var(--s6) var(--s5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+}
+
+.infoTitle {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--blanc-casse);
+}
+
+.infoList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+.infoList li {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--gris-clair);
+  padding-left: var(--s4);
+  position: relative;
+  line-height: 1.6;
+}
+
+.infoList li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 5px;
+  height: 5px;
+  background: var(--or);
+  transform: rotate(45deg);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,111 @@
+.section {
+  padding: var(--s9) 0;
+  background: var(--noir-absolu);
+  position: relative;
+}
+
+.section::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--or), transparent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s4);
+  margin-top: var(--s5);
+}
+
+.card {
+  border: var(--border-or-subtle);
+  background: var(--noir-mat);
+  padding: var(--s5) var(--s5) var(--s4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+.stars {
+  color: var(--or);
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.comment {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--gris-clair);
+  line-height: 1.7;
+  font-style: italic;
+  flex: 1;
+}
+
+.pseudo {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--blanc-casse);
+}
+
+/* Carousel nav */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s5);
+  margin-top: var(--s5);
+}
+
+.navBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  color: var(--blanc);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.navBtn:hover {
+  border-color: var(--or);
+  color: var(--or);
+}
+
+.dots {
+  display: flex;
+  gap: var(--s2);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gris-fonce);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.dotActive {
+  background: var(--or);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
