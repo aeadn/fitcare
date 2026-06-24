@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "FIT'CARE",
   },
   icons: {
-    apple: '/icons/icon-192x192.png',
+    apple: '/images/logo.webp',
   },
 }
 
@@ -26,9 +26,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <head>
-        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
-      </head>
       <body>
         {children}
         <script

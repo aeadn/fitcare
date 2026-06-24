@@ -1,10 +1,11 @@
 import Nav from '@/components/Nav'
 import LaMarque from '@/components/LaMarque'
+import Valeurs from '@/components/Valeurs'
 import Footer from '@/components/Footer'
 
 export const metadata = {
   title: "La Marque — FIT'CARE Barbershop",
-  description: "Confiance & Estime de soi — Découvrez l'univers FIT'CARE",
+  description: "Le concept et les valeurs FIT'CARE — Confiance & Estime de soi",
 }
 
 export default function LaMarquePage() {
@@ -13,6 +14,7 @@ export default function LaMarquePage() {
       <Nav />
       <main style={{ paddingTop: 'var(--nav-height)' }}>
         <LaMarque />
+        <Valeurs />
       </main>
       <Footer />
     </>

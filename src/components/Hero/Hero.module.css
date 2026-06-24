@@ -2,22 +2,39 @@
   position: relative;
   width: 100%;
   height: 100vh;
+  min-height: 560px;
   background: var(--noir-absolu);
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slide {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 1s ease;
+  transition: opacity 1.2s ease;
 }
 
 .slide.active {
   opacity: 1;
 }
 
-/* Ligne dorée en bas */
+/* Dégradé sombre sur l'image */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.55) 50%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+  z-index: 1;
+}
+
+/* Ligne dorée signature en bas */
 .hero::after {
   content: '';
   position: absolute;
@@ -26,10 +43,72 @@
   right: 0;
   height: 1px;
   background: linear-gradient(to right, transparent, var(--or), transparent);
-  z-index: 2;
+  z-index: 3;
 }
 
-/* Dots */
+/* Contenu centré */
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s4);
+  padding: 0 var(--s5);
+  padding-top: var(--nav-height);
+}
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--or);
+}
+
+.title {
+  font-family: var(--serif);
+  font-size: clamp(56px, 11vw, 104px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--blanc);
+  line-height: 0.9;
+  margin: 0;
+}
+
+.subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(14px, 2vw, 18px);
+  color: var(--or-light);
+  letter-spacing: 0.08em;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  background: var(--blanc-casse);
+  color: var(--noir-absolu);
+  padding: 14px var(--s7);
+  text-decoration: none;
+  border: 1px solid var(--blanc-casse);
+  transition: all 0.25s ease;
+  margin-top: var(--s3);
+}
+
+.cta:hover {
+  background: var(--or);
+  border-color: var(--or);
+  color: var(--noir-absolu);
+}
+
+/* Dots navigation */
 .dots {
   position: absolute;
   bottom: 28px;
@@ -44,14 +123,29 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.3);
   border: none;
   cursor: pointer;
   padding: 0;
-  transition: background 0.25s;
+  transition: background 0.25s, transform 0.25s;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.6);
 }
 
 .dotActive {
   background: var(--or);
-  transform: scale(1.2);
+  transform: scale(1.25);
+}
+
+@media (max-width: 768px) {
+  .title {
+    letter-spacing: 0.08em;
+  }
+
+  .cta {
+    padding: 12px var(--s6);
+    font-size: 10px;
+  }
 }

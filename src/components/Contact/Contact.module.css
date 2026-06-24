@@ -36,6 +36,11 @@
   transition: all 0.2s;
 }
 
+.tab:not(.tabActive):hover {
+  border-color: var(--gris-clair);
+  color: var(--blanc-casse);
+}
+
 .tabActive {
   background: var(--or);
   color: var(--noir-absolu);
@@ -163,6 +168,11 @@
   cursor: pointer;
   border: none;
   white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.fileBtn:hover {
+  background: var(--or-light);
 }
 
 .submit {

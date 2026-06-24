@@ -5,12 +5,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project
 
 FIT'CARE Barbershop — site vitrine PWA en **Next.js (App Router) + TypeScript**.  
-Projet BUT MMI S5. Le site est responsive : desktop fidèle à `maquette/FITCARE_maquette_desktop.pdf`, mobile fidèle à `maquette/FITCARE_maquette_mobile.pdf`.
+Projet BUT MMI S5. Le site est responsive : desktop fidèle à `maquette/desktop/`, mobile fidèle à `maquette/mobile/`.
 
-## Commands (once scaffolded)
+> Les maquettes de référence sont dans les **sous-dossiers** `maquette/desktop/` et `maquette/mobile/` (une page par fichier PDF). Les fichiers à la racine de `maquette/` sont des versions moins précises — les ignorer.  
+> Note : les PDFs ne peuvent pas être lus directement par l'outil Read (pdftoppm absent). Se baser sur les descriptions utilisateur et le design system.
+
+## Commands
 
 ```bash
-npm run dev      # dev server
+npm run dev      # dev server (localhost:3000)
 npm run build    # production build
 npm run start    # serve production build
 npm run lint     # ESLint
@@ -20,79 +23,93 @@ npm run lint     # ESLint
 
 Source unique : `design_system/FITCARE_design-system.html` — lire ce fichier avant toute décision de style.
 
-**Tokens CSS clés**
+**Tokens CSS clés** (définis dans `src/app/globals.css`)
 | Token | Valeur |
 |---|---|
 | `--noir-absolu` | `#000000` |
 | `--noir-mat` | `#111111` |
-| `--or` | `#AE986C` |
+| `--or` | `#AE986C` ← valeur intentionnelle du projet (le DS HTML utilise `#C09A50`, ne pas changer) |
 | `--or-light` | `#C4AF8A` |
 | `--blanc-casse` | `#F0F0F0` |
 | `--gris-clair` | `#A0A0A0` |
 | `--gris-border` | `#2A2A2A` |
 | `--serif` | `'Inria Serif'` (titres) |
 | `--sans` | `'Inter'` (textes, nav, labels) |
-| `--border-or-subtle` | `1px solid rgba(192,154,80,0.35)` |
+| `--border-or-subtle` | `1px solid rgba(174,152,108,0.35)` |
+| `--nav-height` | `64px` |
 
-Bordures toujours carrées (`border-radius: 0`). Les lignes dégradées dorées (`linear-gradient(to right, transparent, #C09A50, transparent)`) sont la signature visuelle.
+Bordures toujours carrées (`border-radius: 0`). Lignes dégradées dorées (`linear-gradient(to right, transparent, #AE986C, transparent)`) = signature visuelle.
 
-## Architecture prévue
+## Styling pattern
+
+- **CSS Modules** par composant (`Component.module.css`) pour les styles spécifiques.
+- **Classes globales** dans `globals.css` pour les patterns partagés : `.container`, `.sectionEyebrow`, `.sectionTitle`, `.sectionDesc`, `.dividerGold`, `.dividerGoldLine`, `.dividerGoldMark`.
+- Chaque composant importe ses propres styles + utilise les classes globales directement dans le JSX.
+
+## Page structure pattern
+
+Chaque page suit ce schéma :
+
+```tsx
+<Nav />
+<main style={{ paddingTop: 'var(--nav-height)' }}>
+  <SectionA />
+  <SectionB />
+</main>
+<Footer />
+```
+
+La Nav est `position: fixed`, donc tout `<main>` doit avoir `paddingTop: var(--nav-height)`.
+
+## Pages et composants associés
+
+| Route | Composants |
+|---|---|
+| `/` | Hero + (toutes sections accueil) |
+| `/la-marque` | LaMarque (concept + valeurs) |
+| `/prestations` | Prestations + Abonnements |
+| `/nos-salons` | Salons |
+| `/contact` | Contact |
+| `/actualites` | Blog |
+
+## Images
+
+- **Source** : `img/` (originals, non servis)
+- **Servis** : `public/images/` (copier depuis `img/` avant utilisation)
+- Toujours utiliser le composant `<Image>` de Next.js avec `fill` + `sizes` approprié.
+- Images de réservation par salon disponibles : `reservation_fitcare_[bagnolet|cormeilles|boissy|epinay].webp` (à copier dans `public/images/` si besoin).
+
+## Architecture
 
 ```
 src/
   app/
-    layout.tsx          # RootLayout — nav + footer globaux
-    page.tsx            # Page d'accueil (toutes sections)
-    globals.css         # Variables CSS du design system
+    layout.tsx          # RootLayout — metadata PWA, import globals.css
+    globals.css         # Tokens CSS + reset + classes globales partagées
+    page.tsx            # Accueil
+    la-marque/page.tsx
+    prestations/page.tsx
+    nos-salons/page.tsx
+    contact/page.tsx
+    actualites/page.tsx
   components/
-    Nav/                # Desktop (hamburger caché) + Mobile (hamburger)
-    Hero/               # Carousel avec dots
-    Salons/             # Cards salon avec photo, adresse, CTA réserver
-    Prestations/        # Cards prestation avec filtre
-    Abonnements/        # Cards forfait (Fitmax / Fullmax)
-    Valeurs/            # Cards valeur (Excellence, Confiance, Style)
-    CTA/                # 3 blocs (clients / barbers / franchisés)
-    Avis/               # Carousel témoignages
-    Blog/               # Grille articles
-    Contact/            # Formulaire contact + formulaire candidature
-    Footer/             # Brand + tagline + icônes Instagram & TikTok
-  public/
-    images/             # Toutes les webp copiées depuis img/
-    manifest.json       # PWA manifest
-    sw.js               # Service worker (généré par next-pwa)
-    icons/              # Icônes PWA (192x192, 512x512)
+    Nav/                # Fixed, desktop links + mobile hamburger, scroll effect
+    Hero/               # Carousel plein écran, auto-scroll 4000ms, dots cliquables
+    LaMarque/           # Slogan image + 5 étapes + avant/après
+    Salons/             # Cards salon (image 120px + body + btn Réserver)
+    Prestations/        # Cards prestation avec filtres par catégorie
+    Abonnements/        # Cards forfait Fitmax / Fullmax
+    Valeurs/            # Cards valeur + partenaire Fitness Park
+    CTASection/         # 3 blocs CTA (clients / barbers / entrepreneurs)
+    Avis/               # Carousel témoignages avec nav ←/→
+    Blog/               # Grille articles avec overlay image
+    Contact/            # Formulaire tabbed (contact / postuler)
+    Footer/             # Brand + tagline + hex SVG + Instagram/TikTok + nav links
+public/
+  images/               # WebP servis par Next.js Image
+  manifest.json         # PWA manifest
+  sw.js                 # Service worker
 ```
-
-## Mapping images → sections
-
-| Fichier (`img/`) | Section |
-|---|---|
-| `carroussel_accueil.webp` | Hero/Carousel — image principale |
-| `fitcare_slogan.webp` | Hero ou section valeurs |
-| `fitcare_bagnolet.webp` | Card salon — Bagnolet |
-| `fitcare_cormeilles.webp` | Card salon — Cormeilles |
-| `fitcare_boissy.webp` | Card salon — Boissy |
-| `fitcare_epinay.webp` | Card salon — Épinay |
-| `coupe_scratch.webp` | Card prestation — Coupe Tondeuse |
-| `barbe_boucle_oreille.webp` | Card prestation — Taille de Barbe |
-| `degrade_tatouage.webp` | Card prestation — Coupe + Barbe |
-| `5_tetes.webp` / `dessin_coupes.webp` | Section valeurs / styles |
-| `5_etapes.webp` | Section "La Marque" / process |
-| `avant_apres.webp` | Section résultats / prestations |
-| `affiche_barbershop.webp` | Article ou section actualités |
-| `affiche_graphisme.webp` | Article ou section actualités |
-
-## Navigation
-
-**Desktop** : Logo `FIT'CARE` (Inria Serif) + liens (Accueil, La Marque, Prestations, Nos Salons, Contact, Actualités) + boutons "Devenir partenaire" (outline or) / "Postuler" (solid or).
-
-**Mobile** : Hamburger (3 lignes blanches) → menu déroulant avec les mêmes liens + Abonnements, Réservation, Blog.
-
-## PWA
-
-- `manifest.json` : `name: "FIT'CARE"`, `theme_color: "#000000"`, `background_color: "#000000"`, `display: "standalone"`
-- Utiliser `next-pwa` pour le service worker
-- Icônes PWA générées depuis le logo hexagone SVG du design system
 
 ## Salons connus
 
@@ -100,11 +117,21 @@ src/
 |---|---|---|
 | Bagnolet | 3-7 rue Angela Davis, 93170 Bagnolet | Ouvert |
 | Cormeilles | ZAC des Bois Rochefort, Bd du Parisis, 95240 Cormeilles | Ouvert |
-| Boissy | — | Ouvert ou prochaine ouverture |
-| Épinay | — | Ouvert ou prochaine ouverture |
+| Boissy | Boissy-Saint-Léger | Ouvert |
+| Épinay | Épinay-sur-Seine | Ouvert |
 | Bondy | — | Prochaine ouverture |
 
 ## Abonnements
 
 - **Fitmax** — 4 coupes — 50 €
 - **Fullmax** *(recommandé)* — 4 coupes et barbes — 70 €
+
+## Navigation
+
+**Desktop** (> 900px) : Logo image `logo.webp` + liens + boutons "Devenir partenaire" (outline or) / "Postuler" (solid or).  
+**Mobile** (≤ 900px) : Hamburger → menu déroulant avec liens + Abonnements, Réservation, Blog.
+
+## PWA
+
+- `manifest.json` : `name: "FIT'CARE"`, `theme_color: "#000000"`, `display: "standalone"`
+- Service worker enregistré dans `layout.tsx` via `dangerouslySetInnerHTML`
